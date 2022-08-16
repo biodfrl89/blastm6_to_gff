@@ -3,4 +3,4 @@ This script is designed to transform blast format 6 (tabular with 11 columns) in
 
 ## Options
 
-|Syntax|Description|
+| Syntax | Description |
