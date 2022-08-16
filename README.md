@@ -1,9 +1,13 @@
 # blastm6_to_gff
 This script is designed to transform blast format 6 (tabular with 11 columns) into a gff file, along with some filters.
 
+## Syntax
+
+blastm6_to_gff.py --file [FILE] --source [SOURCE] --bitscore [BITSCORE]
+
 ## Options
 
-| Syntax | Description |
+| Options | Description |
 | --- | --- |
 | file | The input file produced by blast with output format 6 (tabular). |
 | source | The mode in which blast was performed, e.g. blastn, blastp, tblastx, ... |
