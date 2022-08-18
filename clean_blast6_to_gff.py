@@ -1,5 +1,3 @@
-#PRUEBA
-
 import pandas #Para los dataframes
 import argparse #Para el parseador de argumentos
 
@@ -15,10 +13,10 @@ parser.add_argument("--source", type = str, required = True, help = "The mode in
 args = parser.parse_args()
 
 #Renombrar variables o modificarlas si es necesario.
-file = args.file
-outname = args.file.replace(".m6", "") + ".gff" #Cambiar nombre de salida
-method = args.source
-bitscore = args.bitscore
+file = str(args.file)
+outname = str(args.file.replace(".m6", "") + ".gff") #Cambiar nombre de salida
+method = str(args.source)
+bitscore = float(args.bitscore)
 
 df = pandas.DataFrame(columns = ["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"]) # Iniciar un df vacio pero con nombres de columnas
 
@@ -29,10 +27,10 @@ with open(file) as filehandler: #Abrir archivo
         if float(line_elements[11]) > bitscore: #Si bitscore es mayor que el declarado en las opciones.
             new_line = line_elements[1] + "\t" + method + "\t" + "gene" + "\t" + line_elements[8] + "\t" + line_elements[9] + "\t.\t.\t.\t" + line_elements[0] #Reordena la linea como gff. Se crea un string
             new_line = new_line.split("\t") #Partir el string por tabulacion
-            if new_line[4] > new_line[3]: #Si end es mayor que start
+            if new_line[9] > new_line[8]: #Si end es mayor que start
                 new_line[6] = "+" #Cambiar sexta posicion a +
             else: #Sino
-                new_line[4], new_line[3] = new_line[3], new_line[4] #Cambiar de posición los elementos de lista
+                new_line[9], new_line[8] = new_line[8], new_line[9] #Cambiar de posición los elementos de lista
                 new_line[6] = "-" #Cambiar sexto elemento a -
             df_list = pandas.DataFrame.from_dict({"seqid": [new_line[0]], "source": [new_line[1]], "type": [new_line[2]], "start": [new_line[3]], "end": [new_line[4]], \
                 "score": [new_line[5]], "strand": [new_line[6]], "phase": [new_line[7]], "attributes": [new_line[8]] } ) #Crea un df de un dicc, a partir de new line y asignando nombres de columnas respectivos.
