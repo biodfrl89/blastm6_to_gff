@@ -25,7 +25,7 @@ with open(file) as filehandler: #Abrir archivo
         line = line.rstrip().replace("|", "; ") #Corta el trailing y remplaza | con ;
         line_elements = line.split("\t") #Separa por tabulaciones. Se crea una lista
         if float(line_elements[11]) > bitscore: #Si bitscore es mayor que el declarado en las opciones.
-            new_line = line_elements[1] + "\t" + method + "\t" + "gene" + "\t" + line_elements[8] + "\t" + line_elements[9] + "\t.\t.\t.\t" + line_elements[0] #Reordena la linea como gff. Se crea un string
+            new_line = line_elements[1] + "\t" + method + "\t" + "gene" + "\t" + line_elements[8] + "\t" + line_elements[9] + "\t.\t.\t.\t" + 'Query=' + line_elements[0] #Reordena la linea como gff. Se crea un string
             new_line = new_line.split("\t") #Partir el string por tabulacion
             if new_line[9] > new_line[8]: #Si end es mayor que start
                 new_line[6] = "+" #Cambiar sexta posicion a +
