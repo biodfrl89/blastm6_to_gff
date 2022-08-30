@@ -27,7 +27,7 @@ with open(file) as filehandler: #Abrir archivo
         if float(line_elements[11]) > bitscore: #Si bitscore es mayor que el declarado en las opciones.
             new_line = line_elements[1] + "\t" + method + "\t" + "gene" + "\t" + line_elements[8] + "\t" + line_elements[9] + "\t.\t.\t.\t" + 'Query=' + line_elements[0] #Reordena la linea como gff. Se crea un string
             new_line = new_line.split("\t") #Partir el string por tabulacion
-            if new_line[4] > new_line[4]: #Si end es mayor que start
+            if new_line[4] > new_line[3]: #Si end es mayor que start
                 new_line[6] = "+" #Cambiar sexta posicion a +
             else: #Sino
                 new_line[4], new_line[3] = new_line[3], new_line[4] #Cambiar de posición los elementos de lista
